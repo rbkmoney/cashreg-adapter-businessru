@@ -17,16 +17,19 @@ management:
 server:
   port: @server.port@
 ---
-restTemplate:
-  networkTimeout: 3000
----
 converterIp:
   nat64prefix: "2a04:4a00:5:10ff:4:1:"
 ---
 restTemplate:
-  connectTimeout: 3000
-  connectionRequestTimeout: 60000
-  readTimeout: 60000
+  networkTimeout: 60000
 ---
-businessru:
+timer:
+  maxTimePolling: 600
+  pollingDelay: 600
+---
+adapter-cashreg:
   url: "https://check-dev.business.ru/api-rbkmoney/v4/"
+---
+error-mapping:
+  file: classpath:fixture/errors.json
+  patternReason: "'%s' - '%s'" # 'code' - 'description'

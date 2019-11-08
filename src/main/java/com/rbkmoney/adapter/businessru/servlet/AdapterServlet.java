@@ -1,19 +1,20 @@
 package com.rbkmoney.adapter.businessru.servlet;
 
-import com.rbkmoney.adapter.businessru.handler.BusinessRuServerHandler;
-import com.rbkmoney.cashreg.proto.provider.CashRegProviderSrv;
+import com.rbkmoney.damsel.cashreg.provider.CashRegProviderSrv;
 import com.rbkmoney.woody.thrift.impl.http.THServiceBuilder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 
+@RequiredArgsConstructor
 @WebServlet("/adapter/cashreg/businessru")
 public class AdapterServlet extends GenericServlet {
 
     @Autowired
-    private BusinessRuServerHandler handler;
+    private CashRegProviderSrv.Iface handler;
 
     private Servlet servlet;
 
