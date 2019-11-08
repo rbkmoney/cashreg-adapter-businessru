@@ -13,9 +13,9 @@ import org.springframework.http.ResponseEntity;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class BussinessRuClient implements AdapterCashReg {
+public class BusinessRuClient implements AdapterCashReg {
 
-    private final BussinessRuApi api;
+    private final BusinessRuApi api;
 
     @Override
     public CommonResponse debit(RequestWrapper<CommonRequest> requestWrapper) {
@@ -52,7 +52,7 @@ public class BussinessRuClient implements AdapterCashReg {
         return responseEntity.getBody();
     }
 
-    private String extractToken(RequestWrapper<CommonRequest> requestWrapper, BussinessRuApi api) {
+    private String extractToken(RequestWrapper<CommonRequest> requestWrapper, BusinessRuApi api) {
         return api.getToken(requestWrapper).getBody().getToken();
     }
 }

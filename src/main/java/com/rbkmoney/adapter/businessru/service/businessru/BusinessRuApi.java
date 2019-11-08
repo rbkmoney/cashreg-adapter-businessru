@@ -18,9 +18,9 @@ import org.springframework.web.client.RestTemplate;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class BussinessRuApi {
+public class BusinessRuApi {
 
-    private final static String PROVIDER_NAME = "BussinessRu";
+    private final static String PROVIDER_NAME = "BusinessRu";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;

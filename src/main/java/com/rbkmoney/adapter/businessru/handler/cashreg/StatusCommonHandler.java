@@ -1,6 +1,6 @@
 package com.rbkmoney.adapter.businessru.handler.cashreg;
 
-import com.rbkmoney.adapter.businessru.service.businessru.BussinessRuClient;
+import com.rbkmoney.adapter.businessru.service.businessru.BusinessRuClient;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRequest;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
 import com.rbkmoney.adapter.businessru.service.businessru.model.response.CommonResponse;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class StatusCommonHandler extends CommonHandlerImpl<ExitStateModel, RequestWrapper<CommonRequest>, CommonResponse, EntryStateModel> {
 
     public StatusCommonHandler(
-            BussinessRuClient client,
+            BusinessRuClient client,
             Converter<EntryStateModel, RequestWrapper<CommonRequest>> converter,
             Processor<ExitStateModel, EntryStateModel, CommonResponse> responseProcessorChain
     ) {

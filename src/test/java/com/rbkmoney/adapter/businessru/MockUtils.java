@@ -1,6 +1,6 @@
 package com.rbkmoney.adapter.businessru;
 
-import com.rbkmoney.adapter.businessru.service.businessru.BussinessRuClient;
+import com.rbkmoney.adapter.businessru.service.businessru.BusinessRuClient;
 import com.rbkmoney.adapter.businessru.service.businessru.constant.Status;
 import com.rbkmoney.adapter.businessru.service.businessru.model.Payload;
 import com.rbkmoney.adapter.businessru.service.businessru.model.response.CommonResponse;
@@ -13,7 +13,7 @@ import static org.mockito.Mockito.doAnswer;
 
 public class MockUtils {
 
-    public static void mockClient(BussinessRuClient client) {
+    public static void mockClient(BusinessRuClient client) {
         doAnswer((Answer<CommonResponse>) invocation -> {
             CommonResponse response = new CommonResponse();
             response.setStatus(Status.WAIT.getValue());

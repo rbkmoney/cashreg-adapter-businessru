@@ -2,7 +2,7 @@ package com.rbkmoney.adapter.businessru.handler;
 
 import com.rbkmoney.adapter.businessru.IntegrationTest;
 import com.rbkmoney.adapter.businessru.MockUtils;
-import com.rbkmoney.adapter.businessru.service.businessru.BussinessRuClient;
+import com.rbkmoney.adapter.businessru.service.businessru.BusinessRuClient;
 import com.rbkmoney.damsel.cashreg.provider.CashRegContext;
 import com.rbkmoney.damsel.cashreg.provider.CashRegResult;
 import org.apache.thrift.TException;
@@ -17,7 +17,7 @@ import static junit.framework.TestCase.assertTrue;
 public class BusinessRuServerHandlerTest extends IntegrationTest {
 
     @MockBean
-    public BussinessRuClient client;
+    public BusinessRuClient client;
 
     @Before
     public void setup() {
