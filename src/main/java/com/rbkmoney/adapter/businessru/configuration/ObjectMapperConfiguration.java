@@ -12,10 +12,9 @@ public class ObjectMapperConfiguration {
 
     @Bean
     public ObjectMapper objectMapper() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
-        objectMapper.registerModule(new JavaTimeModule());
-        return objectMapper;
+        return new ObjectMapper()
+                .configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true)
+                .registerModule(new JavaTimeModule());
     }
 
 }

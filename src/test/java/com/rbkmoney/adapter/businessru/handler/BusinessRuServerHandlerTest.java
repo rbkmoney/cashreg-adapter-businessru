@@ -26,7 +26,7 @@ public class BusinessRuServerHandlerTest extends IntegrationTest {
     }
 
     @Test
-    public void testMe() throws TException {
+    public void testBusinessRuServerHandler() throws TException {
         CashRegContext cashRegContext = makeCashRegContext();
         CashRegResult result = handler.register(cashRegContext);
         assertTrue(result.getIntent().isSetSleep());

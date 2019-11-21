@@ -35,7 +35,7 @@ public class BusinessRuApi {
         request.setPass(requestWrapper.getRequest().getPass());
         try {
             String body = objectMapper.writeValueAsString(request);
-            HttpEntity httpEntity = new HttpEntity(body, getHttpHeaders(requestWrapper.getToken()));
+            HttpEntity httpEntity = new HttpEntity<>(body, getHttpHeaders(requestWrapper.getToken()));
             ResponseEntity<CommonResponse> response = restTemplate.exchange(url, HttpMethod.POST, httpEntity, CommonResponse.class);
             log.info("{}. {} with response: {}", PROVIDER_NAME, "getToken", response);
             return response;
@@ -59,26 +59,12 @@ public class BusinessRuApi {
     }
 
     /**
-     * чек «Коррекция прихода»
-     */
-    public ResponseEntity<CommonResponse> sellCorrection(RequestWrapper<CommonRequest> requestWrapper) {
-        return send(requestWrapper, Operations.SELL_CORRECTION);
-    }
-
-    /**
      * чек «Расход»
      */
     public ResponseEntity<CommonResponse> buy(RequestWrapper<CommonRequest> requestWrapper) {
         return send(requestWrapper, Operations.BUY);
     }
-
-    /**
-     * чек «Возврат расхода»
-     */
-    public ResponseEntity<CommonResponse> buyRefund(RequestWrapper<CommonRequest> requestWrapper) {
-        return send(requestWrapper, Operations.BUY_REFUND);
-    }
-
+    
     /**
      * чек «Коррекция расхода»
      */
@@ -97,12 +83,12 @@ public class BusinessRuApi {
         return response;
     }
 
-    private ResponseEntity send(RequestWrapper<CommonRequest> requestWrapper, Operations operation) {
+    private ResponseEntity<CommonResponse> send(RequestWrapper<CommonRequest> requestWrapper, Operations operation) {
         try {
             String body = objectMapper.writeValueAsString(requestWrapper.getRequest());
             log.info("{}. {} with request: {}", PROVIDER_NAME, operation, body);
 
-            HttpEntity httpEntity = new HttpEntity(body, getHttpHeaders(requestWrapper.getToken()));
+            HttpEntity httpEntity = new HttpEntity<>(body, getHttpHeaders(requestWrapper.getToken()));
             String url = converterIp.replaceIpv4ToIpv6(requestWrapper.getUrl() + requestWrapper.getGroup() + "/" + operation.getOperation() + "?token=" + requestWrapper.getToken());
             log.info("{}. send URL {}", PROVIDER_NAME, url);
 

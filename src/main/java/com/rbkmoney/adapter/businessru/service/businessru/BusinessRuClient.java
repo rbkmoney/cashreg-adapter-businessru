@@ -3,15 +3,11 @@ package com.rbkmoney.adapter.businessru.service.businessru;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRequest;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
 import com.rbkmoney.adapter.businessru.service.businessru.model.response.CommonResponse;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 
 @Slf4j
-@Getter
-@Setter
 @RequiredArgsConstructor
 public class BusinessRuClient implements AdapterCashReg {
 

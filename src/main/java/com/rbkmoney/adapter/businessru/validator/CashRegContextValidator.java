@@ -16,10 +16,10 @@ public class CashRegContextValidator implements Validator<CashRegContext> {
     @Override
     public void validate(CashRegContext context) {
         Map<String, String> options = context.getOptions();
-        validateRequredFields(options);
+        validateRequiredFields(options);
     }
 
-    private void validateRequredFields(Map<String, String> options) {
+    private void validateRequiredFields(Map<String, String> options) {
         Objects.requireNonNull(options.get(OptionalField.LOGIN.getField()), "Option 'login' must be set");
         Objects.requireNonNull(options.get(OptionalField.PASS.getField()), "Option 'pass' must be set");
         Objects.requireNonNull(options.get(OptionalField.PAYMENT_METHOD.getField()), "Option 'payment_method' must be set");

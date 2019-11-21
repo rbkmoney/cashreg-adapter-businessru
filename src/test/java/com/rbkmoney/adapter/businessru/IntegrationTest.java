@@ -40,16 +40,15 @@ public abstract class IntegrationTest {
     protected CashRegProviderSrv.Iface handler;
 
     public CashRegContext makeCashRegContext() {
-        CashRegContext context = new CashRegContext();
-        context.setCashregId(TestData.CASHREG_ID);
-        context.setSourceCreation(createSourceCreation());
-        context.setAccountInfo(createAccountInfo());
-        context.setOptions(createAdapterOptions());
-        context.setSession(new Session().setType(Type.debit(new Debit())));
-        return context;
+        return new CashRegContext()
+                .setCashregId(TestData.CASHREG_ID)
+                .setSourceCreation(createSourceCreation())
+                .setAccountInfo(createAccountInfo())
+                .setOptions(createAdapterOptions())
+                .setSession(new Session().setType(Type.debit(new Debit())));
     }
 
-    protected Map<String, String> createAdapterOptions() {
+    private Map<String, String> createAdapterOptions() {
         Map<String, String> options = new HashMap<>();
         options.put(OptionalField.LOGIN.getField(), "login");
         options.put(OptionalField.PASS.getField(), "pass");
@@ -61,36 +60,30 @@ public abstract class IntegrationTest {
         return options;
     }
 
-    protected SourceCreation createSourceCreation() {
+    private SourceCreation createSourceCreation() {
         SourceCreation sourceCreation = new SourceCreation();
         sourceCreation.setPayment(createPaymentInfo());
         return sourceCreation;
     }
 
-    protected AccountInfo createAccountInfo() {
-
+    private AccountInfo createAccountInfo() {
         com.rbkmoney.damsel.cashreg_domain.LegalEntity legalEntity = new com.rbkmoney.damsel.cashreg_domain.LegalEntity();
-        com.rbkmoney.damsel.cashreg_domain.RussianLegalEntity russianLegalEntity = new com.rbkmoney.damsel.cashreg_domain.RussianLegalEntity();
-
-        russianLegalEntity.setActualAddress("ActualAddress");
-        russianLegalEntity.setInn("INN");
-        russianLegalEntity.setPostAddress("PostAddress");
-        russianLegalEntity.setRegisteredName("RegisteredName");
-        russianLegalEntity.setRepresentativeDocument("RepresentativeDocument");
-        russianLegalEntity.setRepresentativeFullName("RepresentativeFullName");
-        russianLegalEntity.setRepresentativePosition("RepresentativePosition");
-        russianLegalEntity.setRegisteredNumber("RegisteredNumber");
-
-        com.rbkmoney.damsel.cashreg_domain.RussianBankAccount russianBankAccount = new com.rbkmoney.damsel.cashreg_domain.RussianBankAccount();
-        russianBankAccount.setAccount("Account");
-        russianBankAccount.setBankName("BankName");
-        russianBankAccount.setBankPostAccount("BankPostAccount");
-        russianBankAccount.setBankBik("BankBik");
-        russianLegalEntity.setRussianBankAccount(russianBankAccount);
-        russianLegalEntity.setEmail(TestData.TEST_EMAIL);
-        russianLegalEntity.setTaxMode(TaxMode.osn);
-
-        legalEntity.setRussianLegalEntity(russianLegalEntity);
+        legalEntity.setRussianLegalEntity(new com.rbkmoney.damsel.cashreg_domain.RussianLegalEntity()
+                .setActualAddress("ActualAddress")
+                .setInn("INN")
+                .setPostAddress("PostAddress")
+                .setRegisteredName("RegisteredName")
+                .setRepresentativeDocument("RepresentativeDocument")
+                .setRepresentativeFullName("RepresentativeFullName")
+                .setRepresentativePosition("RepresentativePosition")
+                .setRegisteredNumber("RegisteredNumber")
+                .setRussianBankAccount(new com.rbkmoney.damsel.cashreg_domain.RussianBankAccount()
+                        .setAccount("Account")
+                        .setBankName("BankName")
+                        .setBankPostAccount("BankPostAccount")
+                        .setBankBik("BankBik"))
+                .setEmail(TestData.TEST_EMAIL)
+                .setTaxMode(TaxMode.osn));
 
         AccountInfo accountInfo = new AccountInfo();
         accountInfo.setLegalEntity(legalEntity);
@@ -112,6 +105,5 @@ public abstract class IntegrationTest {
         paymentInfo.setEmail(TestData.TEST_EMAIL);
         return paymentInfo;
     }
-
 
 }

@@ -11,11 +11,14 @@ import com.rbkmoney.adapter.businessru.service.businessru.model.Service;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRequest;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.AdapterCashRegProperties;
-import com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.OptionalField;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.EntryStateModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
+
+import static com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.OptionalField.*;
 
 
 @Component
@@ -53,21 +56,22 @@ public class EntryStateToCommonRequestConverter implements Converter<EntryStateM
                                         .sno(entryStateModel.getCompany().getSno())
                                         .build()
                         )
-                        .payments(paymentsTransformer.transform(entryStateModel.getPayments())) //
+                        .payments(paymentsTransformer.transform(entryStateModel.getPayments()))
                         .items(itemsTransformer.transform(entryStateModel.getItems()))
-                        .total(entryStateModel.getTotal()) //
-                        .vats(vatsTransformer.transform(entryStateModel.getVats())) //
+                        .total(entryStateModel.getTotal())
+                        .vats(vatsTransformer.transform(entryStateModel.getVats()))
                         .build());
 
         Service service = Service.builder().callbackUrl(entryStateModel.getCallbackUrl()).build();
         commonRequest.setService(service);
 
+        Map<String, String> options = entryStateModel.getOptions();
         return new RequestWrapper<>(
                 commonRequest,
-                entryStateModel.getOptions().getOrDefault(OptionalField.URL.getField(), adapterCashRegProperties.getUrl()),
-                entryStateModel.getOptions().get(OptionalField.GROUP.getField()),
-                entryStateModel.getOptions().get(OptionalField.COMPANY_NAME.getField()),
-                entryStateModel.getOptions().get(OptionalField.COMPANY_ADDRESS.getField()),
+                options.getOrDefault(URL.getField(), adapterCashRegProperties.getUrl()),
+                options.get(GROUP.getField()),
+                options.get(COMPANY_NAME.getField()),
+                options.get(COMPANY_ADDRESS.getField()),
                 DEFAULT_EMPTY_VALUE_TOKEN_API
         );
     }
