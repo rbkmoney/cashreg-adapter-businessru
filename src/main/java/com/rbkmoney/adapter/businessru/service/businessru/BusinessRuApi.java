@@ -7,16 +7,12 @@ import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRe
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
 import com.rbkmoney.adapter.businessru.service.businessru.model.response.CommonResponse;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.utils.converter.ip.ConverterIp;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
-@Getter
-@Setter
 @RequiredArgsConstructor
 public class BusinessRuApi {
 
