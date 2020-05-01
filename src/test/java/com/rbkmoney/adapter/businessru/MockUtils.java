@@ -9,8 +9,6 @@ import org.mockito.stubbing.Answer;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 
-
-
 public class MockUtils {
 
     public static void mockClient(BusinessRuClient client) {

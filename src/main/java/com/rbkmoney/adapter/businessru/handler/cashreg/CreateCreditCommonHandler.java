@@ -1,6 +1,5 @@
 package com.rbkmoney.adapter.businessru.handler.cashreg;
 
-
 import com.rbkmoney.adapter.businessru.service.businessru.BusinessRuClient;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRequest;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
@@ -13,7 +12,6 @@ import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.Step;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.processor.Processor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-
 
 @Component
 public class CreateCreditCommonHandler extends CommonHandlerImpl<ExitStateModel, RequestWrapper<CommonRequest>, CommonResponse, EntryStateModel> {

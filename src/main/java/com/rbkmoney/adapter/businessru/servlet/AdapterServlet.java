@@ -1,6 +1,6 @@
 package com.rbkmoney.adapter.businessru.servlet;
 
-import com.rbkmoney.damsel.cashreg.provider.CashRegProviderSrv;
+import com.rbkmoney.damsel.cashreg.adapter.CashregAdapterSrv;
 import com.rbkmoney.woody.thrift.impl.http.THServiceBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +14,14 @@ import java.io.IOException;
 public class AdapterServlet extends GenericServlet {
 
     @Autowired
-    private CashRegProviderSrv.Iface handler;
+    private CashregAdapterSrv.Iface handler;
 
     private Servlet servlet;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        servlet = new THServiceBuilder().build(CashRegProviderSrv.Iface.class, handler);
+        servlet = new THServiceBuilder().build(CashregAdapterSrv.Iface.class, handler);
     }
 
     @Override

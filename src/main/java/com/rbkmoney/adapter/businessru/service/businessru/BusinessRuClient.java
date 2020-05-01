@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 
 @Slf4j
 @RequiredArgsConstructor
-public class BusinessRuClient implements AdapterCashReg {
+public class BusinessRuClient implements AdapterCashreg {
 
     private final BusinessRuApi api;
 
