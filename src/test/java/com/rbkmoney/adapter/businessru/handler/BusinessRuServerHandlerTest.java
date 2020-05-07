@@ -3,16 +3,15 @@ package com.rbkmoney.adapter.businessru.handler;
 import com.rbkmoney.adapter.businessru.IntegrationTest;
 import com.rbkmoney.adapter.businessru.MockUtils;
 import com.rbkmoney.adapter.businessru.service.businessru.BusinessRuClient;
-import com.rbkmoney.damsel.cashreg.provider.CashRegContext;
-import com.rbkmoney.damsel.cashreg.provider.CashRegResult;
+import com.rbkmoney.damsel.cashreg.adapter.CashregContext;
+import com.rbkmoney.damsel.cashreg.adapter.CashregResult;
 import org.apache.thrift.TException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static junit.framework.TestCase.assertTrue;
-
+import static org.junit.Assert.assertTrue;
 
 public class BusinessRuServerHandlerTest extends IntegrationTest {
 
@@ -27,13 +26,13 @@ public class BusinessRuServerHandlerTest extends IntegrationTest {
 
     @Test
     public void testBusinessRuServerHandler() throws TException {
-        CashRegContext cashRegContext = makeCashRegContext();
-        CashRegResult result = handler.register(cashRegContext);
+        CashregContext context = makeCashRegContext();
+        CashregResult result = handler.register(context);
         assertTrue(result.getIntent().isSetSleep());
 
-        cashRegContext.getSession().setState(result.getState());
+        context.getSession().setState(result.getState());
 
-        result = handler.register(cashRegContext);
+        result = handler.register(context);
         assertTrue(result.getIntent().isSetFinish());
     }
 

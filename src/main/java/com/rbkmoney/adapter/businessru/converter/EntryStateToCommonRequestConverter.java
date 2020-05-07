@@ -1,6 +1,5 @@
 package com.rbkmoney.adapter.businessru.converter;
 
-
 import com.rbkmoney.adapter.businessru.converter.transformer.ItemsTransformer;
 import com.rbkmoney.adapter.businessru.converter.transformer.PaymentsTransformer;
 import com.rbkmoney.adapter.businessru.converter.transformer.VatsTransformer;
@@ -10,7 +9,7 @@ import com.rbkmoney.adapter.businessru.service.businessru.model.Receipt;
 import com.rbkmoney.adapter.businessru.service.businessru.model.Service;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRequest;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
-import com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.AdapterCashRegProperties;
+import com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.AdapterCashregProperties;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.EntryStateModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 import static com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.OptionalField.*;
-
 
 @Component
 @RequiredArgsConstructor
@@ -30,7 +28,7 @@ public class EntryStateToCommonRequestConverter implements Converter<EntryStateM
     private final VatsTransformer vatsTransformer;
     private final PaymentsTransformer paymentsTransformer;
     private final ItemsTransformer itemsTransformer;
-    private final AdapterCashRegProperties adapterCashRegProperties;
+    private final AdapterCashregProperties adapterCashRegProperties;
 
     @Override
     public RequestWrapper<CommonRequest> convert(EntryStateModel entryStateModel) {

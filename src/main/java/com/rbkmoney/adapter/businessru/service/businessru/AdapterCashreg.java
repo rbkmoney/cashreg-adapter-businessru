@@ -4,7 +4,7 @@ import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRe
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
 import com.rbkmoney.adapter.businessru.service.businessru.model.response.CommonResponse;
 
-public interface AdapterCashReg {
+public interface AdapterCashreg {
 
     CommonResponse debit(RequestWrapper<CommonRequest> request);
 

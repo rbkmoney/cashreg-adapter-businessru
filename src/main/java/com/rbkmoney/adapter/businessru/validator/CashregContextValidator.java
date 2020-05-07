@@ -2,7 +2,7 @@ package com.rbkmoney.adapter.businessru.validator;
 
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.OptionalField;
 import com.rbkmoney.adapter.common.Validator;
-import com.rbkmoney.damsel.cashreg.provider.CashRegContext;
+import com.rbkmoney.damsel.cashreg.adapter.CashregContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,15 +11,15 @@ import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
-public class CashRegContextValidator implements Validator<CashRegContext> {
+public class CashregContextValidator implements Validator<CashregContext> {
 
     @Override
-    public void validate(CashRegContext context) {
+    public void validate(CashregContext context) {
         Map<String, String> options = context.getOptions();
-        validateRequiredFields(options);
+        validateRequredFields(options);
     }
 
-    private void validateRequiredFields(Map<String, String> options) {
+    private void validateRequredFields(Map<String, String> options) {
         Objects.requireNonNull(options.get(OptionalField.LOGIN.getField()), "Option 'login' must be set");
         Objects.requireNonNull(options.get(OptionalField.PASS.getField()), "Option 'pass' must be set");
         Objects.requireNonNull(options.get(OptionalField.PAYMENT_METHOD.getField()), "Option 'payment_method' must be set");

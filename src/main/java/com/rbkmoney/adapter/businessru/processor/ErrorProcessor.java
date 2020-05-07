@@ -1,6 +1,5 @@
 package com.rbkmoney.adapter.businessru.processor;
 
-
 import com.rbkmoney.adapter.businessru.service.businessru.model.response.CommonResponse;
 import com.rbkmoney.adapter.businessru.utils.ErrorUtils;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.AdapterState;
@@ -34,7 +33,6 @@ public class ErrorProcessor implements Processor<ExitStateModel, EntryStateModel
             log.error("Sleep Timeout for response: {}!", response);
             exitStateModel.setErrorCode(SLEEP_TIMEOUT.getCode());
             exitStateModel.setErrorMessage(SLEEP_TIMEOUT.getMessage());
-
         } else {
             log.error("Unknown result code for response: {}!", response);
             exitStateModel.setErrorCode(UNKNOWN.getCode());
