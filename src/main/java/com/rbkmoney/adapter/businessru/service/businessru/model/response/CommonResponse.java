@@ -35,10 +35,10 @@ public class CommonResponse {
 
     /**
      * Тип источника ошибки
-     * {@link Error Error}
+     * {@link com.rbkmoney.adapter.businessru.service.businessru.model.Error Error}
      */
     @JsonProperty("error")
-    private Error error;
+    private com.rbkmoney.adapter.businessru.service.businessru.model.Error error;
 
     /**
      * {@link Status Status}
