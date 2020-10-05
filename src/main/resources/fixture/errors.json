@@ -6,7 +6,7 @@
     "state": "payment"
   },
   {
-    "codeRegex": "1-errorId-system",
+    "codeRegex": "1",
     "descriptionRegex": "test",
     "mapping": "authorization_failed:operation_blocked"
   }

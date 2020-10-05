@@ -31,8 +31,7 @@ public class ErrorProcessor implements Processor<ExitStateModel, EntryStateModel
         exitStateModel.setEntryStateModel(entryStateModel);
         if (ErrorUtils.hasError(response)) {
             com.rbkmoney.adapter.businessru.service.businessru.model.Error error = response.getError();
-            String errorCode = String.format("%d-%s-%s", error.getCode(), error.getErrorId(), error.getType());
-            exitStateModel.setErrorCode(errorCode);
+            exitStateModel.setErrorCode(error.getCode().toString());
             exitStateModel.setErrorMessage(error.getText());
         } else if (adapterState.getMaxDateTimePolling().getEpochSecond() < currentTime.getEpochSecond()) {
             log.error("Sleep Timeout for response: {}!", response);
