@@ -99,6 +99,12 @@ public abstract class IntegrationTest {
 
         Cart cart = new Cart();
         List<ItemsLine> lines = new ArrayList<>();
+        ItemsLine itemsLine = new ItemsLine();
+        itemsLine.setPrice(cash);
+        itemsLine.setTax("18%");
+        itemsLine.setQuantity(1);
+        itemsLine.setProduct("test");
+        lines.add(itemsLine);
         cart.setLines(lines);
         paymentInfo.setCart(cart);
         paymentInfo.setEmail(TestData.TEST_EMAIL);
