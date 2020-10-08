@@ -84,7 +84,7 @@ public class CtxToEntryModelConverter implements Converter<CashregContext, Entry
                 com.rbkmoney.adapter.businessru.service.businessru.constant.Vat.codeTextOf(itemsLine.getTax());
         BigDecimal sum = BigDecimal.valueOf(vat.getRate())
                 .multiply(prepareAmount(itemsLine.getPrice().getAmount()))
-                .divide(BigDecimal.valueOf(vat.getRate() + 100), 2, HALF_UP);
+                .divide(BigDecimal.valueOf(vat.getRate() + 100L), 2, HALF_UP);
         return Vat.builder()
                 .sum(sum)
                 .type(itemsLine.getTax())
