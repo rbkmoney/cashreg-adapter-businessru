@@ -1,4 +1,4 @@
-package com.rbkmoney.adapter.businessru.entryconverter;
+package com.rbkmoney.adapter.businessru.utils;
 
 
 import com.rbkmoney.adapter.businessru.service.businessru.constant.Status;

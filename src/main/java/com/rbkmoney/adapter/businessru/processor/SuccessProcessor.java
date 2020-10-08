@@ -1,6 +1,6 @@
 package com.rbkmoney.adapter.businessru.processor;
 
-import com.rbkmoney.adapter.businessru.entryconverter.ErrorUtils;
+import com.rbkmoney.adapter.businessru.utils.ErrorUtils;
 import com.rbkmoney.adapter.businessru.service.businessru.constant.Status;
 import com.rbkmoney.adapter.businessru.service.businessru.model.response.CommonResponse;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.AdapterState;
