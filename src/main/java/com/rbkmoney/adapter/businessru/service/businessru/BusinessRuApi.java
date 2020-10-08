@@ -60,7 +60,7 @@ public class BusinessRuApi {
     public ResponseEntity<CommonResponse> buy(RequestWrapper<CommonRequest> requestWrapper) {
         return send(requestWrapper, Operations.BUY);
     }
-    
+
     /**
      * чек «Коррекция расхода»
      */

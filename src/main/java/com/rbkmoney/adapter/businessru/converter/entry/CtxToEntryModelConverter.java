@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.math.RoundingMode.HALF_UP;
+
 @Component
 @RequiredArgsConstructor
 public class CtxToEntryModelConverter implements Converter<CashregContext, EntryStateModel> {
@@ -78,8 +80,13 @@ public class CtxToEntryModelConverter implements Converter<CashregContext, Entry
     }
 
     private Vat prepareVat(ItemsLine itemsLine) {
+        com.rbkmoney.adapter.businessru.service.businessru.constant.Vat vat =
+                com.rbkmoney.adapter.businessru.service.businessru.constant.Vat.codeTextOf(itemsLine.getTax());
+        BigDecimal sum = BigDecimal.valueOf(vat.getRate())
+                .multiply(prepareAmount(itemsLine.getPrice().getAmount()))
+                .divide(BigDecimal.valueOf(vat.getRate() + 100L), 2, HALF_UP);
         return Vat.builder()
-                .sum(prepareAmount(itemsLine.getPrice().getAmount()))
+                .sum(sum)
                 .type(itemsLine.getTax())
                 .build();
     }
