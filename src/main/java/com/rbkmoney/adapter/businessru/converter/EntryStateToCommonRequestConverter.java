@@ -9,6 +9,7 @@ import com.rbkmoney.adapter.businessru.service.businessru.model.Receipt;
 import com.rbkmoney.adapter.businessru.service.businessru.model.Service;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRequest;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
+import com.rbkmoney.adapter.businessru.utils.DateFormate;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.AdapterCashregProperties;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.EntryStateModel;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,7 @@ public class EntryStateToCommonRequestConverter implements Converter<EntryStateM
         commonRequest.setPass(entryStateModel.getAuth().getPass());
 
         commonRequest.setExternalId(entryStateModel.getCashRegId());
+        commonRequest.setTimestamp(DateFormate.getCurrentDate());
 
         commonRequest.setReceipt(
                 Receipt.builder()
