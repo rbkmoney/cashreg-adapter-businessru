@@ -60,7 +60,6 @@ public class CtxToEntryModelConverter implements Converter<CashregContext, Entry
 
         List<ItemsLine> itemsLines = paymentInfo.getCart().getLines();
         builder.payments(itemsLines.stream().map(this::preparePayments).collect(Collectors.toList()));
-        builder.vats(itemsLines.stream().map(this::prepareVat).collect(Collectors.toList()));
 
         TargetType targetType = TargetTypeResolver.resolve(context.getSession().getType());
         StateModel.StateModelBuilder stateModelBuilder = StateModel.builder()
@@ -72,18 +71,6 @@ public class CtxToEntryModelConverter implements Converter<CashregContext, Entry
 
         builder.state(stateModelBuilder.build());
         return builder.build();
-    }
-
-    private Vat prepareVat(ItemsLine itemsLine) {
-        com.rbkmoney.adapter.businessru.service.businessru.constant.Vat vat =
-                com.rbkmoney.adapter.businessru.service.businessru.constant.Vat.codeTextOf(itemsLine.getTax());
-        BigDecimal sum = BigDecimal.valueOf(vat.getRate())
-                .multiply(prepareAmount(itemsLine.getPrice().getAmount()))
-                .divide(BigDecimal.valueOf(vat.getRate() + 100L), 2, HALF_UP);
-        return Vat.builder()
-                .sum(sum)
-                .type(itemsLine.getTax())
-                .build();
     }
 
     private Payments preparePayments(ItemsLine itemsLine) {
@@ -104,7 +91,10 @@ public class CtxToEntryModelConverter implements Converter<CashregContext, Entry
                             .quantity(new BigDecimal(itemsLine.getQuantity()).setScale(1))
                             .price(prepareAmount(itemsLine.getPrice().getAmount()))
                             .sum(sum)
-                            .vat(Vat.builder().type(itemsLine.getTax()).build())
+                            .vat(Vat.builder().type(
+                                    com.rbkmoney.adapter.businessru.service.businessru.constant.Vat.codeTextOf(
+                                            itemsLine.getTax()).getCode())
+                                    .build())
                             .paymentMethod(options.get(OptionalField.PAYMENT_METHOD.getField()))
                             .paymentObject(options.get(OptionalField.PAYMENT_OBJECT.getField()))
                             .name(itemsLine.getProduct())
