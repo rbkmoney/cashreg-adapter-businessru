@@ -58,7 +58,6 @@ public class EntryStateToCommonRequestConverter implements Converter<EntryStateM
                         .payments(paymentsTransformer.transform(entryStateModel.getPayments()))
                         .items(itemsTransformer.transform(entryStateModel.getItems()))
                         .total(entryStateModel.getTotal())
-                        .vats(vatsTransformer.transform(entryStateModel.getVats()))
                         .build());
 
         Service service = Service.builder().callbackUrl(entryStateModel.getCallbackUrl()).build();
