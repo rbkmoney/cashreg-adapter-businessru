@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rbkmoney.adapter.businessru.service.businessru.constant.Operations;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRequest;
+import com.rbkmoney.adapter.businessru.service.businessru.model.request.GetTokenRequest;
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
 import com.rbkmoney.adapter.businessru.service.businessru.model.response.CommonResponse;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.utils.converter.ip.ConverterIp;
@@ -26,9 +27,9 @@ public class BusinessRuApi {
         String url = converterIp.replaceIpv4ToIpv6(requestWrapper.getUrl() + "getToken");
         log.info("{} getToken URL {}", PROVIDER_NAME, url);
 
-        CommonRequest request = new CommonRequest();
-        request.setLogin(requestWrapper.getRequest().getLogin());
-        request.setPass(requestWrapper.getRequest().getPass());
+        GetTokenRequest request = new GetTokenRequest();
+        request.setLogin(requestWrapper.getLogin());
+        request.setPass(requestWrapper.getPassword());
         try {
             String body = objectMapper.writeValueAsString(request);
             HttpEntity httpEntity = new HttpEntity<>(body, getHttpHeaders(requestWrapper.getToken()));

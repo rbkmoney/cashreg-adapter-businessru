@@ -11,6 +11,7 @@ import com.rbkmoney.adapter.businessru.service.businessru.model.request.CommonRe
 import com.rbkmoney.adapter.businessru.service.businessru.model.request.RequestWrapper;
 import com.rbkmoney.adapter.businessru.utils.DateFormate;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.config.properties.AdapterCashregProperties;
+import com.rbkmoney.adapter.cashreg.spring.boot.starter.constant.OptionalField;
 import com.rbkmoney.adapter.cashreg.spring.boot.starter.model.EntryStateModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
@@ -35,8 +36,6 @@ public class EntryStateToCommonRequestConverter implements Converter<EntryStateM
     public RequestWrapper<CommonRequest> convert(EntryStateModel entryStateModel) {
 
         CommonRequest commonRequest = new CommonRequest();
-        commonRequest.setLogin(entryStateModel.getAuth().getLogin());
-        commonRequest.setPass(entryStateModel.getAuth().getPass());
 
         commonRequest.setExternalId(entryStateModel.getCashRegId());
         commonRequest.setTimestamp(DateFormate.getCurrentDate());
@@ -72,7 +71,9 @@ public class EntryStateToCommonRequestConverter implements Converter<EntryStateM
                 options.get(GROUP.getField()),
                 options.get(COMPANY_NAME.getField()),
                 options.get(COMPANY_ADDRESS.getField()),
-                DEFAULT_EMPTY_VALUE_TOKEN_API
+                DEFAULT_EMPTY_VALUE_TOKEN_API,
+                options.get(OptionalField.LOGIN.getField()),
+                options.get(OptionalField.PASS.getField())
         );
     }
 
