@@ -22,8 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static java.math.RoundingMode.HALF_UP;
-
 @Component
 @RequiredArgsConstructor
 public class CtxToEntryModelConverter implements Converter<CashregContext, EntryStateModel> {
@@ -38,7 +36,11 @@ public class CtxToEntryModelConverter implements Converter<CashregContext, Entry
         EntryStateModel.EntryStateModelBuilder builder = EntryStateModel.builder();
 
         builder.options(options);
-        builder.cashRegId(context.getCashregId());
+        if (adapterState != null && adapterState.getReceiptId() != null) {
+            builder.cashRegId(adapterState.getReceiptId());
+        } else {
+            builder.cashRegId(context.getCashregId());
+        }
 
         PaymentInfo paymentInfo = context.getSourceCreation().getPayment();
         builder.client(Client.builder()
