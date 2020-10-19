@@ -36,7 +36,7 @@ public class CtxToEntryModelConverter implements Converter<CashregContext, Entry
         EntryStateModel.EntryStateModelBuilder builder = EntryStateModel.builder();
 
         builder.options(options);
-        if (adapterState != null && adapterState.getReceiptId() != null) {
+        if (adapterState.getReceiptId() != null) {
             builder.cashRegId(adapterState.getReceiptId());
         } else {
             builder.cashRegId(context.getCashregId());
