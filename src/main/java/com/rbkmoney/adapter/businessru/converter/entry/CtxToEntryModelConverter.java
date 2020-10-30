@@ -95,7 +95,7 @@ public class CtxToEntryModelConverter implements Converter<CashregContext, Entry
                             .sum(sum)
                             .vat(Vat.builder().type(
                                     com.rbkmoney.adapter.businessru.service.businessru.constant.Vat.codeTextOf(
-                                            itemsLine.getTax()).getCode())
+                                            String.valueOf(itemsLine.getTax())).getCode())
                                     .build())
                             .paymentMethod(options.get(OptionalField.PAYMENT_METHOD.getField()))
                             .paymentObject(options.get(OptionalField.PAYMENT_OBJECT.getField()))

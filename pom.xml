@@ -34,7 +34,7 @@
         <geck.version>0.6.11</geck.version>
         <lombok.version>1.18.4</lombok.version>
         <error-mapping.version>1.0.6</error-mapping.version>
-        <cashreg-proto.version>1.15-f4f228b</cashreg-proto.version>
+        <cashreg-proto.version>1.16-bb4c505</cashreg-proto.version>
         <adapter-common-lib.version>0.0.26</adapter-common-lib.version>
         <testcontainers.version>1.10.2</testcontainers.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
