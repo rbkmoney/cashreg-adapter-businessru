@@ -23,9 +23,10 @@ converterIp:
 restTemplate:
   networkTimeout: 60000
 ---
-timer:
-  maxTimePolling: 600
-  pollingDelay: 600
+time:
+  config:
+    maxTimePolling: 600
+    pollingDelay: 600
 ---
 adapter-cashreg:
   url: "https://check-dev.business.ru/api-rbkmoney/v4/"
