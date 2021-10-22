@@ -20,12 +20,19 @@ public class CashregContextValidator implements Validator<CashregContext> {
     }
 
     private void validateRequredFields(Map<String, String> options) {
-        Objects.requireNonNull(options.get(OptionalField.LOGIN.getField()), "Option 'login' must be set");
-        Objects.requireNonNull(options.get(OptionalField.PASS.getField()), "Option 'pass' must be set");
-        Objects.requireNonNull(options.get(OptionalField.PAYMENT_METHOD.getField()), "Option 'payment_method' must be set");
-        Objects.requireNonNull(options.get(OptionalField.PAYMENT_OBJECT.getField()), "Option 'payment_object' must be set");
-        Objects.requireNonNull(options.get(OptionalField.GROUP.getField()), "Option 'group' must be set");
-        Objects.requireNonNull(options.get(OptionalField.COMPANY_NAME.getField()), "Option 'company_name' must be set");
-        Objects.requireNonNull(options.get(OptionalField.COMPANY_ADDRESS.getField()), "Option 'company_address' must be set");
+        Objects.requireNonNull(options.get(OptionalField.LOGIN.getField()),
+                "Option 'login' must be set");
+        Objects.requireNonNull(options.get(OptionalField.PASS.getField()),
+                "Option 'pass' must be set");
+        Objects.requireNonNull(options.get(OptionalField.PAYMENT_METHOD.getField()),
+                "Option 'payment_method' must be set");
+        Objects.requireNonNull(options.get(OptionalField.PAYMENT_OBJECT.getField()),
+                "Option 'payment_object' must be set");
+        Objects.requireNonNull(options.get(OptionalField.GROUP.getField()),
+                "Option 'group' must be set");
+        Objects.requireNonNull(options.get(OptionalField.COMPANY_NAME.getField()),
+                "Option 'company_name' must be set");
+        Objects.requireNonNull(options.get(OptionalField.COMPANY_ADDRESS.getField()),
+                "Option 'company_address' must be set");
     }
 }

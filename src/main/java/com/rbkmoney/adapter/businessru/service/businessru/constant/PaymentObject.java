@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
+@SuppressWarnings({"LineLength"})
 public enum PaymentObject {
 
     COMMODITY("commodity", "товар. О реализуемом товаре, за исключением подакцизного товара (наименование и иные сведения, описывающие товар)."),

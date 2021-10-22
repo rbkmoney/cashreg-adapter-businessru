@@ -48,7 +48,8 @@ public class BusinessRuServerHandlerTest extends IntegrationTest {
             CommonResponse response = new CommonResponse();
             response.setStatus(Status.FAIL.getValue());
 
-            com.rbkmoney.adapter.businessru.service.businessru.model.Error error = new com.rbkmoney.adapter.businessru.service.businessru.model.Error();
+            com.rbkmoney.adapter.businessru.service.businessru.model.Error error =
+                    new com.rbkmoney.adapter.businessru.service.businessru.model.Error();
             error.setCode(1);
             error.setText("test");
             error.setErrorId("errorId");

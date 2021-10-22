@@ -97,14 +97,14 @@ public abstract class IntegrationTest {
         cash.setCurrency(new CurrencyRef().setSymbolicCode("RUR"));
         paymentInfo.setCash(cash);
 
-        Cart cart = new Cart();
-        List<ItemsLine> lines = new ArrayList<>();
         ItemsLine itemsLine = new ItemsLine();
         itemsLine.setPrice(cash);
         itemsLine.setTax("18%");
         itemsLine.setQuantity(1);
         itemsLine.setProduct("test");
+        List<ItemsLine> lines = new ArrayList<>();
         lines.add(itemsLine);
+        Cart cart = new Cart();
         cart.setLines(lines);
         paymentInfo.setCart(cart);
         paymentInfo.setEmail(TestData.TEST_EMAIL);

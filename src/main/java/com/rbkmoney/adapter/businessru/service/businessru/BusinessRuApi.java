@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class BusinessRuApi {
 
-    private final static String PROVIDER_NAME = "BusinessRu";
+    public static final String PROVIDER_NAME = "BusinessRu";
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -33,7 +33,9 @@ public class BusinessRuApi {
         try {
             String body = objectMapper.writeValueAsString(request);
             HttpEntity httpEntity = new HttpEntity<>(body, getHttpHeaders(requestWrapper.getToken()));
-            ResponseEntity<CommonResponse> response = restTemplate.exchange(url, HttpMethod.POST, httpEntity, CommonResponse.class);
+            ResponseEntity<CommonResponse> response = restTemplate.exchange(
+                    url, HttpMethod.POST, httpEntity, CommonResponse.class
+            );
             log.info("{}. {} with response: {}", PROVIDER_NAME, "getToken", response);
             return response;
         } catch (JsonProcessingException ex) {
@@ -73,9 +75,15 @@ public class BusinessRuApi {
      * Получение информации о чеке по uuid-у
      */
     public ResponseEntity<CommonResponse> report(RequestWrapper<CommonRequest> requestWrapper) {
-        String url = converterIp.replaceIpv4ToIpv6(requestWrapper.getUrl() + requestWrapper.getGroup() + "/report/" + requestWrapper.getRequest().getExternalId() + "?token=" + requestWrapper.getToken());
+        String url = converterIp.replaceIpv4ToIpv6(
+                requestWrapper.getUrl() + requestWrapper.getGroup() +
+                "/report/" + requestWrapper.getRequest().getExternalId() +
+                "?token=" + requestWrapper.getToken()
+        );
         log.info("{}. {} with url: {}", PROVIDER_NAME, "report", url);
-        ResponseEntity<CommonResponse> response = restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, CommonResponse.class);
+        ResponseEntity<CommonResponse> response = restTemplate.exchange(
+                url, HttpMethod.GET, HttpEntity.EMPTY, CommonResponse.class
+        );
         log.info("{}. {} with response: {}", PROVIDER_NAME, "report", response);
         return response;
     }
@@ -86,11 +94,18 @@ public class BusinessRuApi {
             log.info("{}. {} with request: {}", PROVIDER_NAME, operation, body);
 
             HttpEntity httpEntity = new HttpEntity<>(body, getHttpHeaders(requestWrapper.getToken()));
-            String url = converterIp.replaceIpv4ToIpv6(requestWrapper.getUrl() + requestWrapper.getGroup() + "/" + operation.getOperation() + "?token=" + requestWrapper.getToken());
+            String url = converterIp.replaceIpv4ToIpv6(
+                    requestWrapper.getUrl() +
+                    requestWrapper.getGroup() +
+                    "/" + operation.getOperation() +
+                    "?token=" + requestWrapper.getToken()
+            );
             log.info("{}. send URL {}", PROVIDER_NAME, url);
 
-            ResponseEntity<CommonResponse> responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity, CommonResponse.class);
-            log.info("{}. {} with response: {}", PROVIDER_NAME, operation.getOperation(), responseEntity);
+            ResponseEntity<CommonResponse> responseEntity = restTemplate.exchange(
+                    url, HttpMethod.POST, httpEntity, CommonResponse.class);
+            log.info("{}. {} with response: {}", PROVIDER_NAME, operation.getOperation(), responseEntity
+            );
             return responseEntity;
         } catch (JsonProcessingException ex) {
             throw new RuntimeException(ex);
