@@ -20,7 +20,6 @@ public class ErrorProcessor implements Processor<ExitStateModel, EntryStateModel
 
     @Override
     public ExitStateModel process(CommonResponse response, EntryStateModel entryStateModel) {
-        Instant currentTime = Instant.now();
         AdapterState adapterState = new AdapterState();
         if (entryStateModel.getState().getAdapterContext() != null) {
             adapterState = entryStateModel.getState().getAdapterContext();
@@ -29,11 +28,13 @@ public class ErrorProcessor implements Processor<ExitStateModel, EntryStateModel
         ExitStateModel exitStateModel = new ExitStateModel();
         exitStateModel.setAdapterContext(adapterState);
         exitStateModel.setEntryStateModel(entryStateModel);
+        Instant currentTime = Instant.now();
         if (ErrorUtils.hasError(response)) {
             com.rbkmoney.adapter.businessru.service.businessru.model.Error error = response.getError();
             exitStateModel.setErrorCode(error.getCode().toString());
             exitStateModel.setErrorMessage(error.getText());
-        } else if (adapterState.getPollingInfo().getMaxDateTimePolling().getEpochSecond() < currentTime.getEpochSecond()) {
+        } else if (adapterState.getPollingInfo().getMaxDateTimePolling().getEpochSecond() <
+                   currentTime.getEpochSecond()) {
             log.error("Sleep Timeout for response: {}!", response);
             exitStateModel.setErrorCode(SLEEP_TIMEOUT.getCode());
             exitStateModel.setErrorMessage(SLEEP_TIMEOUT.getMessage());

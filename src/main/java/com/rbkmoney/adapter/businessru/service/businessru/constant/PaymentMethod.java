@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
+@SuppressWarnings({"LineLength"})
 public enum PaymentMethod {
 
     FULL_PREPAYMENT("full_prepayment", "предоплата 100%. Полная предварительная оплата до момента передачи предмета расчета"),

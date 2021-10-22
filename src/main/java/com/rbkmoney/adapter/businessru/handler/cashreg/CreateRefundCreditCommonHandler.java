@@ -14,7 +14,8 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreateRefundCreditCommonHandler extends CommonHandlerImpl<ExitStateModel, RequestWrapper<CommonRequest>, CommonResponse, EntryStateModel> {
+public class CreateRefundCreditCommonHandler
+        extends CommonHandlerImpl<ExitStateModel, RequestWrapper<CommonRequest>, CommonResponse, EntryStateModel> {
 
     public CreateRefundCreditCommonHandler(
             BusinessRuClient client,
